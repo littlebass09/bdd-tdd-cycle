@@ -8,9 +8,13 @@ class MoviesController < ApplicationController
   
   def same_movie_director
     movie = Movie.find params[:id]
-    puts movie.inspect
-    @movies = Movie.where(:director => movie.director)
-    puts @movies.inspect
+    if movie.director == nil or movie.director == ""
+      flash[:notice] = "Sorry, '" + movie.title + "' has no director info. Redirected to home page."
+      redirect_to "/"
+    else
+      @movies = Movie.where(:director => movie.director)
+    end
+
   end
 
   def index
