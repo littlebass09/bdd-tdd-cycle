@@ -5,6 +5,13 @@ class MoviesController < ApplicationController
     @movie = Movie.find(id) # look up movie by unique ID
     # will render app/views/movies/show.<extension> by default
   end
+  
+  def same_movie_director
+    movie = Movie.find params[:id]
+    puts movie.inspect
+    @movies = Movie.where(:director => movie.director)
+    puts @movies.inspect
+  end
 
   def index
     sort = params[:sort] || session[:sort]

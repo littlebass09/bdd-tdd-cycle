@@ -20,6 +20,14 @@ module NavigationHelpers
       movie = Movie.where( :title => $1)
       edit_movie_path movie[0].id
       
+    when /^the details page for "(.*)"$/
+      movie = Movie.where( :title => $1)
+      movie_path movie[0].id
+      
+    when /^the Similar Movies page for "(.*)"$/
+      movie = Movie.where( :title => $1)
+      same_movie_director_path movie[0].id
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
