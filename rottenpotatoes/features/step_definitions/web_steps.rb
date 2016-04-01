@@ -263,8 +263,7 @@ Given(/^the following movies exist:$/) do |table|
 end
 
 
-#Given /the following movies exist/ do |movies_table| 
-#  movies_table.hashes.each do |movie| 
-#    Movie.create movie 
-#  end 
-#end 
+Then /the director of "(.+)" should be "(.+)"$/ do |movie_name, director_name|
+  movie = Movie.where(:title => movie_name)
+  assert director_name == movie[0].director
+end

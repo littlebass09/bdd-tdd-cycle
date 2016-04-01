@@ -16,9 +16,9 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
-    when /^the edit page for (.*)$/
-      movie = Movie.find_by(name: $1)
-      edit_movie(movie)
+    when /^the edit page for "(.*)"$/
+      movie = Movie.where( :title => $1)
+      edit_movie_path movie[0].id
       
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
